@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request, Response
-from services import CommodityTypeDAO as service_class
-from models import CommodityType as model
+from services import CommodityInboundDAO as service_class
+from models import CommodityInbound as model
 
-bp = Blueprint('commodity_type', __name__, url_prefix="/commodity-types")
+bp = Blueprint('commodity_inbound', __name__, url_prefix="/commodity-inbounds")
 
 service = service_class()
 
@@ -17,18 +17,18 @@ def add():
     results = service.insert(model.from_dict(body))
     return jsonify(results)
 
-@bp.route("/<name>", methods=["GET"])
-def get(name):
-    results = service.get(name)
+@bp.route("/<id>", methods=["GET"])
+def get(id):
+    results = service.get(id)
     return jsonify(results)
 
-@bp.route("/<name>", methods=["PATCH"])
-def update(name):
+@bp.route("/<id>", methods=["PATCH"])
+def update(id):
     body = request.get_json()
-    results = service.update(name, body)
+    results = service.update(id, body)
     return jsonify(results)
 
-@bp.route("/<name>", methods=["DELETE"])
-def delete(name):
-    results = service.delete(name)
+@bp.route("/<id>", methods=["DELETE"])
+def delete(id):
+    results = service.delete(id)
     return Response(None, status=204)

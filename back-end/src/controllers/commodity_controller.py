@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from services import CommodityService as service_class
+from services import CommodityDAO as service_class
 from models import Commodity as model
 
 bp = Blueprint('commodity', __name__, url_prefix="/commodities")

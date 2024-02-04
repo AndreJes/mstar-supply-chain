@@ -1,10 +1,10 @@
 from database.database import db_session
-from models import Manufacturer as model
+from models import Commodity as model
 
-class ManufacturerService():
+class CommodityDAO():
     
-    def get(self, cpf_cnpj:str) -> model:
-        return model.query.filter(model.cpf_cnpj_==cpf_cnpj).first()
+    def get(self, id:int) -> model:
+        return model.query.filter(model.ID_==id).first()
 
     def list_all(self) -> list[model]:
         return model.query.all()
@@ -14,18 +14,18 @@ class ManufacturerService():
         db_session.commit()
         return result
 
-    def update(self, cpf_cnpj:str, new_data:dict) -> model:
-        entity = self.get(cpf_cnpj)
+    def update(self, id:int, new_data:dict) -> model:
+        entity = self.get(id)
 
         for key, value in new_data.items():
             setattr(entity, key, value)
 
         db_session.commit()
 
-        return self.get(entity.CPF_CNPJ_)
+        return self.get(entity.ID_)
 
-    def delete(self, cpf_cnpj:str) -> None:
-        entity = self.get(cpf_cnpj)
+    def delete(self, id:int) -> None:
+        entity = self.get(id)
         db_session.delete(entity)
         db_session.commit()
 

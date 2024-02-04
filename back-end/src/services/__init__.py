@@ -1,3 +1,4 @@
-from .commodity_service import CommodityService
-from .commodity_type_service import CommodityTypeService
-from .manufacturer_service import ManufacturerService
+from .commodity_dao import CommodityDAO
+from .commodity_type_dao import CommodityTypeDAO
+from .manufacturer_dao import ManufacturerDAO
+from .commodity_inbound_dao import CommodityInboundDAO
